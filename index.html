@@ -1,11 +1,9 @@
-
-        
 <!DOCTYPE html>
 <html lang="zh">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>登录爱奇艺</title>
+    <title>登录界面</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -13,144 +11,40 @@
             justify-content: center;
             align-items: center;
             height: 100vh;
-            background-color: #f4f4f4;
+            background-color: #f0f0f0;
         }
         .login-container {
             background: white;
             padding: 20px;
-            border-radius: 5px;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-            width: 300px;
-            text-align: center;
-        }
-        .input-container {
-            position: relative;
-            margin: 10px 0;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
         }
         .input-line {
-            border-bottom: 1px solid #ccc;
-            width: 100%;
-            height: 20px; /* 控制高度 */
-            position: relative;
             display: flex;
             align-items: center;
         }
-        .input-line input {
-            border: none;
-            outline: none;
-            width: calc(100% - 40px); /* 减去前缀的宽度 */
-            margin-left: 40px; /* 留出空间给国家代码 */
-        }
         .country-code {
-            position: absolute;
-            left: 0;
-            cursor: pointer;
+            margin-right: 10px;
         }
-        .agreement {
-            font-size: 12px;
-            margin: 10px 0;
-        }
-        .agreement a {
-            color: green;
-            text-decoration: underline;
-        }
-        input[type="button"] {
-            width: 100%;
-            padding: 10px;
-            margin: 10px 0;
-            background-color: #007bff;
-            color: white;
+        .phone-input {
             border: none;
-            cursor: pointer;
-            border-radius: 5px;
-        }
-        input[type="button"]:hover {
-            background-color: #0056b3;
-        }
-        /* 自定义复选框 */
-        input[type="checkbox"] {
-            display: none; /* 隐藏默认复选框 */
-        }
-        .custom-checkbox {
-            display: inline-block;
-            width: 16px;
-            height: 16px;
-            border: 2px solid #007bff;
-            border-radius: 50%; /* 圆形 */
-            position: relative;
-            margin-right: 5px;
-            cursor: pointer;
-        }
-        input[type="checkbox"]:checked + .custom-checkbox {
-            background-color: #007bff;
-        }
-        /* 下拉框样式 */
-        select {
-            position: absolute;
-            left: 0;
-            border: none;
-            background: transparent;
-            width: 40px; /* 下拉框宽度 */
-            cursor: pointer;
+            border-bottom: 1px solid #ccc;
             outline: none;
+            flex: 1;
+            padding: 5px;
         }
     </style>
 </head>
 <body>
 
 <div class="login-container">
-    <h2>登录爱奇艺</h2>
-    <div class="input-container">
-        <div class="input-line">
-            <select id="country-code" class="country-code">
-                <option value="+86">+86</option>
-                <option value="+1">+1</option>
-                <option value="+44">+44</option>
-                <option value="+81">+81</option>
-                <!-- 添加其他国家代码 -->
-            </select>
-            <input type="text" id="phone" placeholder="请输入手机号" />
-        </div>
+    <h2>登录</h2>
+    <div class="input-line">
+        <span class="country-code">+86</span>
+        <input type="text" class="phone-input" placeholder="请输入手机号" maxlength="11">
     </div>
-    <div class="agreement">
-        <input type="checkbox" id="agree" />
-        <label for="agree" class="custom-checkbox"></label>
-        <label for="agree">阅读并同意<a href="#">《用户协议》</a>和<a href="#">《隐私政策》</a></label>
-    </div>
-    <div class="flex-container">
-        <input type="text" id="verify-code" placeholder="验证码" disabled />
-        <input type="button" id="get-code" value="获取验证码" disabled />
-    </div>
-    <input type="button" id="login" value="登录" disabled />
+    <button type="submit">登录</button>
 </div>
-
-<script>
-    document.getElementById('agree').addEventListener('change', function() {
-        const isChecked = this.checked;
-        document.getElementById('get-code').disabled = !isChecked;
-        document.getElementById('login').disabled = !isChecked;
-    });
-
-    document.getElementById('get-code').addEventListener('click', function() {
-        const phone = document.getElementById('phone').value;
-        const countryCode = document.getElementById('country-code').value;
-        if (/^\d{10,11}$/.test(phone)) {
-            alert('验证码已发送到 ' + countryCode + phone);
-            document.getElementById('verify-code').disabled = false;
-        } else {
-            alert('请输入有效的手机号');
-        }
-    });
-
-    document.getElementById('login').addEventListener('click', function() {
-        const code = document.getElementById('verify-code').value;
-        if (code) {
-            alert('登录成功！');
-        } else {
-            alert('请输入验证码');
-        }
-    });
-</script>
 
 </body>
 </html>
