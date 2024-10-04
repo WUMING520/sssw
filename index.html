@@ -60,9 +60,22 @@
         input[type="button"]:hover {
             background-color: #0056b3;
         }
-        .flex-container {
-            display: flex;
-            align-items: center;
+        /* 自定义复选框 */
+        input[type="checkbox"] {
+            display: none; /* 隐藏默认复选框 */
+        }
+        .custom-checkbox {
+            display: inline-block;
+            width: 16px;
+            height: 16px;
+            border: 2px solid #007bff;
+            border-radius: 50%; /* 圆形 */
+            position: relative;
+            margin-right: 5px;
+            cursor: pointer;
+        }
+        input[type="checkbox"]:checked + .custom-checkbox {
+            background-color: #007bff;
         }
     </style>
 </head>
@@ -78,6 +91,7 @@
     </div>
     <div class="agreement">
         <input type="checkbox" id="agree" />
+        <label for="agree" class="custom-checkbox"></label>
         <label for="agree">阅读并同意<a href="#">《用户协议》</a>和<a href="#">《隐私政策》</a></label>
     </div>
     <div class="flex-container">
